@@ -30,7 +30,7 @@
     <!-- second header -->
     <v-row>
       <v-col cols="12" sm="12" md="12" lg="12" xl="12">
-        <v-card class="pa-1 card">
+        <v-card class=" card">
           <v-card-text class="pa-0 card">
             <v-list>
               <v-list-item
