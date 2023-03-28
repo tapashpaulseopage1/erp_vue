@@ -59,7 +59,7 @@
                     </div>
                     <div class="px-2">
                       <div class="font-text mt-n2">
-                        {{ tagd.name }}
+                        {{ tagd.name1 }}
                       </div>
                       <div class="font-text2">
                         {{ tagd.title }}
@@ -176,6 +176,9 @@
         </v-card-title>
         <v-card-text class="overflow-scroll pa-2 font font2 card-text">
           {{ detail.text }}
+          <a href="#" text class="blue--text pa-0 text-decoration-none">
+            Read full guideline
+          </a>
         </v-card-text>
       </v-card>
     </div>
@@ -238,7 +241,7 @@ export default {
         {
           id: 4,
           name: " Assigned To",
-          name: "MD.Sadik Istiak",
+          name1: "MD.Sadik Istiak",
           title: "UI/UX Designer",
           img: require("../assets/image/img1.png"),
           txt: "It's You",
@@ -246,7 +249,7 @@ export default {
         {
           id: 5,
           name: "Assigned By",
-          name: "MD.Sadik Istiak",
+          name1: "MD.Sadik Istiak",
           title: "UI/UX Designer",
           img: require("../assets/image/img1.png"),
         },
