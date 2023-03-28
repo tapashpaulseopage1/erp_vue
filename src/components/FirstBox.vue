@@ -1,7 +1,7 @@
 <template>
   <v-card class="rounded-lg">
-    <v-card-title class="d-flex">
-      <v-icon class="text-body-1 pa-1" color="#1D82F5">mdi-circle</v-icon>
+    <v-card-title class="d-flex pa-2">
+      <v-icon class="mx-2" size="10" color="#1D82F5">mdi-circle</v-icon>
       <span class="text-body-1 font-weight-bold">Doing</span>
     </v-card-title>
     <v-card-text>

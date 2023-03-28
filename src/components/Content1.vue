@@ -36,7 +36,7 @@
           :key="tags"
           class="d-flex justify-start px-4"
         >
-          <span class="py-3 gary-text font">{{ tags }} : </span>
+          <span class="py-4 gary-text font">{{ tags }} : </span>
         </div>
       </v-col>
 
@@ -44,10 +44,11 @@
         <div
           v-for="tagd in tagDetails"
           :key="tagd.id"
-          class="d-flex justify-start px-4"
+          class="d-flex justify-start px-2 mb-1"
         >
-          <div v-if="tagd.img">
-            <div class="d-flex my-1">
+          <!-- with image tag row -->
+          <div v-if="tagd.img" class="mt-2">
+            <div class="d-flex mt-6">
               <div>
                 <v-avatar size="32">
                   <img :src="tagd.img" />
@@ -74,17 +75,20 @@
             </div>
           </div>
 
-          <div v-else-if="tagd.color" class="py-1">
+          <!-- icon with text -->
+          <div v-else-if="tagd.color" class="pt-2">
             <div class="d-flex pt-2">
-              <v-icon :color="tagd.color" class="text-h3">{{
-                tagd.icon
-              }}</v-icon>
+              <v-icon :color="tagd.color" size="10" class="mt-3 mx-2"
+                >mdi-circle</v-icon
+              >
+
               <span class="font-text pt-3">{{ tagd.text }}</span>
             </div>
           </div>
 
-          <div v-else class="pt-1">
-            <span class="font-text mt-2">
+          <!-- only text show -->
+          <div v-else class="pt-3">
+            <span class="font-text mt-3">
               {{ tagd.text }}
             </span>
           </div>
@@ -95,11 +99,11 @@
 
     <!-- card -->
 
-    <div class="pa-2 mt-1" v-for="detail in details" :key="detail.id">
+    <div class="pa-2" v-for="detail in details" :key="detail.id">
       <!-- card -->
-      <v-card class="my-1" v-if="detail.text1">
+      <v-card class="my-1 rounded-lg" v-if="detail.text1">
         <v-card-title
-          class="red darken-2 rounded-lg d-flex justify-space-between font font1 white--text"
+          class="red darken-2 rounded-tl-lg rounded-tr-lg d-flex justify-space-between font font1 white--text card-title"
         >
           {{ detail.title }}
           <v-avatar size="32" color="white">
@@ -108,39 +112,64 @@
             </v-icon>
           </v-avatar>
         </v-card-title>
-        <v-card-text class="overflow-scroll pa-2 font font2" height="171px">
+        <v-card-text class="overflow-y-auto pa-2 font font2 card-text light">
           <!-- <div class="w-full"> -->
-          <div class="d-flex pa-1">
-            <div class="pa-1 indigo lighten-5 rounded-lg box">
-              <span class="red--text text-h6">{{ detail.number }}</span>
-              <div class="text-caption">
-                <span class="text-caption font-weight-bold">Date:</span
-                >{{ detail.date }}
+          <div class="card-border">
+            <div class="d-block d-md-flex pa-1">
+              <div class="pa-1 indigo lighten-5 rounded-lg box">
+                <span class="red--text text-h6">{{ detail.number }}</span>
+                <div class="text-caption">
+                  <span class="text-caption font-weight-bold">Date:</span
+                  >{{ detail.date }}
+                </div>
+                <div class="text-caption">
+                  <span class="text-caption font-weight-bold">Time:</span
+                  >{{ detail.time }}
+                </div>
               </div>
-              <div class="text-caption">
-                <span class="text-caption font-weight-bold">Time:</span
-                >{{ detail.time }}
-              </div>
+
+              <div class="pa-1 font box2">{{ detail.text1 }}</div>
             </div>
 
-            <div class="pa-1 font box2">{{ detail.text1 }}</div>
+            <div class="pa-2">
+              {{ detail.text2 }}
+            </div>
           </div>
 
-          <div class="pa-2">
-            {{ detail.text2 }}
+          <div class="card-border">
+            <div class="d-block d-md-flex pa-1">
+              <div class="pa-1 indigo lighten-5 rounded-lg box">
+                <span class="red--text text-h6">02</span>
+                <div class="text-caption">
+                  <span class="text-caption font-weight-bold">Date:</span
+                  >{{ detail.date }}
+                </div>
+                <div class="text-caption">
+                  <span class="text-caption font-weight-bold">Time:</span
+                  >{{ detail.time }}
+                </div>
+              </div>
+
+              <div class="pa-1 font box2">{{ detail.text1 }}</div>
+            </div>
+
+            <div class="pa-2">
+              {{ detail.text2 }}
+            </div>
           </div>
+
           <!-- </div> -->
         </v-card-text>
       </v-card>
 
       <!-- card2 -->
-      <v-card class="my-1" v-else>
+      <v-card class="my-1 rounded-lg" v-else>
         <v-card-title
-          class="indigo lighten-5 rounded-lg d-flex justify-start font font1"
+          class="indigo lighten-5 rounded-tl-lg rounded-tr-lg d-flex justify-start font font1"
         >
           {{ detail.title }}
         </v-card-title>
-        <v-card-text class="overflow-scroll pa-2 font font2" height="171px">
+        <v-card-text class="overflow-scroll pa-2 font font2 card-text">
           {{ detail.text }}
         </v-card-text>
       </v-card>
@@ -265,9 +294,12 @@ export default {
 .content1 {
   background: #fff;
   width: 100%;
-  height: auto;
+  /* height: 1494px; */
 }
 
+.card-title {
+  height: 53px !important;
+}
 .gary-text {
   color: #777777;
   font-weight: 400;
@@ -300,5 +332,33 @@ export default {
 }
 .box2 {
   width: 100%;
+}
+.card-text {
+  height: 171px;
+  overflow-y: auto;
+}
+.card-border {
+  box-shadow: 0 0 5px blue;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.light::-webkit-scrollbar {
+  width: 10px;
+}
+
+.light::-webkit-scrollbar-track {
+  background: #e6e6e6;
+  border-left: 1px solid #dadada;
+}
+
+.light::-webkit-scrollbar-thumb {
+  background: #616e80;
+  border: solid 3px #e6e6e6;
+  border-radius: 7px;
+}
+
+.light::-webkit-scrollbar-thumb:hover {
+  background: #616e80;
 }
 </style>
