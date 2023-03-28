@@ -8,10 +8,10 @@
         md="9"
         lg="9"
         xl="9"
-        class="d-flex justify-start"
+        class="d-block d-md-flex justify-start"
       >
         <div v-for="button in buttonList" :key="button.id">
-          <v-btn outlined class="pa-2 mx-2">
+          <v-btn outlined class="pa-2 mx-2 my-2">
             <v-icon class="text-h5 font-bold black-text">{{
               button.icon
             }}</v-icon>
@@ -112,13 +112,16 @@
             </v-icon>
           </v-avatar>
         </v-card-title>
+
         <v-card-text class="overflow-y-auto pa-2 font font2 card-text light">
           <!-- <div class="w-full"> -->
           <div class="card-border">
-            <div class="d-block d-md-flex pa-1">
-              <div class="pa-1 indigo lighten-5 rounded-lg box">
+            <div class="d-block d-md-flex pa-1 box">
+              <div
+                class="pa-1 indigo lighten-5 rounded-lg d-flex justify-space-between align-center d-md-block box3"
+              >
                 <span class="red--text text-h6">{{ detail.number }}</span>
-                <div class="text-caption">
+                <div class="text-caption date">
                   <span class="text-caption font-weight-bold">Date:</span
                   >{{ detail.date }}
                 </div>
@@ -137,10 +140,12 @@
           </div>
 
           <div class="card-border">
-            <div class="d-block d-md-flex pa-1">
-              <div class="pa-1 indigo lighten-5 rounded-lg box">
+            <div class="d-block d-md-flex pa-1 box">
+              <div
+                class="pa-1 indigo lighten-5 rounded-lg d-flex justify-space-between align-center d-md-block box3"
+              >
                 <span class="red--text text-h6">02</span>
-                <div class="text-caption">
+                <div class="text-caption date">
                   <span class="text-caption font-weight-bold">Date:</span
                   >{{ detail.date }}
                 </div>
@@ -300,6 +305,7 @@ export default {
 .card-title {
   height: 53px !important;
 }
+
 .gary-text {
   color: #777777;
   font-weight: 400;
@@ -326,17 +332,24 @@ export default {
 .font2 {
   font-size: 14px;
 }
-.box {
-  width: 110px;
-  height: 90px;
-}
+/* .box {
+  display: grid;
+  grid-template-columns: 150px 2fr;
+} */
+
 .box2 {
-  width: 100%;
+  width: 85%;
 }
+.box3 {
+  width: 15%;
+  height: auto;
+}
+
 .card-text {
   height: 171px;
   overflow-y: auto;
 }
+
 .card-border {
   box-shadow: 0 0 5px blue;
   margin-top: 10px;
@@ -360,5 +373,15 @@ export default {
 
 .light::-webkit-scrollbar-thumb:hover {
   background: #616e80;
+}
+
+@media only screen and (max-width: 600px) {
+  .box2 {
+    width: 100%;
+  }
+  .box3 {
+    width: 100%;
+    height: auto;
+  }
 }
 </style>
