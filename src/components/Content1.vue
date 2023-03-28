@@ -130,6 +130,9 @@
 
             <div class="pa-2">
               {{ detail.text2 }}
+              <a href="#" text class="blue--text pa-0 text-decoration-none">
+                Read full guideline
+              </a>
             </div>
           </div>
           <!-- second box -->
@@ -154,6 +157,9 @@
 
             <div class="pa-2">
               {{ detail.text2 }}
+              <a href="#" text class="blue--text pa-0 text-decoration-none">
+                Read full guideline
+              </a>
             </div>
           </div>
 
