@@ -117,8 +117,8 @@ export default {
 
 .tagg {
   position: absolute;
-  top: 40px;
-  left: -30px;
+  top: 50px;
+  left: -25px;
   z-index: 99;
 }
 .text {
