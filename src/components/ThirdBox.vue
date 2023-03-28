@@ -10,7 +10,7 @@
         {{ content.name }}
       </v-card-title>
 
-      <v-card-text class="pa-0">
+      <v-card-text class="rounded-lg pb-0">
         <v-list class="" v-if="content.lists">
           <v-list-item
             class="pa-0 grid"

@@ -97,7 +97,7 @@
       <!-- card -->
       <v-card class="my-1 rounded-lg" v-if="detail.text1">
         <v-card-title
-          class="red darken-2 rounded-tl-lg rounded-tr-lg d-flex justify-space-between font font1 white--text card-title"
+          class="red darken-2 rounded-tl-lg rounded-tr-lg d-flex justify-space-between font font1 white--text card-title card-t2"
         >
           {{ detail.title }}
           <v-avatar size="32" color="white">
@@ -170,7 +170,7 @@
       <!-- card2 -->
       <v-card class="my-1 rounded-lg" v-else>
         <v-card-title
-          class="indigo lighten-5 rounded-tl-lg rounded-tr-lg d-flex justify-start font font1"
+          class="rounded-tl-lg rounded-tr-lg d-flex justify-start font font1 card-t"
         >
           {{ detail.title }}
         </v-card-title>
@@ -331,6 +331,12 @@ export default {
   color: #777777;
   font-weight: 400;
   font-size: 16px;
+}
+.card-t {
+  background: #e7effc;
+}
+.card-t2 {
+  background: #e33e4f;
 }
 
 .font-text {

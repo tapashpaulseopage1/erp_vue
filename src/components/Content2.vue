@@ -30,7 +30,7 @@ export default {
 .content2 {
   background: #e7effc;
   height: 1225px;
-  width: 80%;
+  width: 60%;
 }
 .v-list-item {
   min-height: 30px !important;

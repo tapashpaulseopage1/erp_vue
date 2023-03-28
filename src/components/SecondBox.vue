@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card
-      class="rounded-lg my-4"
+      class="rounded-lg my-4 relative"
       color="white"
       v-for="content in content2"
       :key="content.id"
@@ -14,7 +14,7 @@
         <span class="text blue--text">Add Comment</span>
       </v-card-subtitle>
 
-      <v-card-text class="pa-0">
+      <v-card-text class="rounded-lg pb-0">
         <v-list class="" v-if="content.lists">
           <v-list-item
             class="pa-0"
@@ -32,6 +32,11 @@
           <v-divider></v-divider>
         </v-list>
       </v-card-text>
+      <v-card-title class="tagg">
+        <v-avatar size="24" color="blue">
+          <v-icon color="white"> mdi-chevron-left </v-icon>
+        </v-avatar>
+      </v-card-title>
     </v-card>
   </div>
 </template>
@@ -107,9 +112,15 @@ export default {
 <style scoped>
 .v-list-item {
   min-height: 30px !important;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.272);
+  /* border-bottom: 1px solid rgba(128, 128, 128, 0.272); */
 }
 
+.tagg {
+  position: absolute;
+  top: 40px;
+  left: -30px;
+  z-index: 99;
+}
 .text {
   color: #777777;
   font-size: 14px;
