@@ -30,16 +30,21 @@ export default {
 .content2 {
   background: #e7effc;
   height: 1225px;
+  width: 80%;
 }
 .v-list-item {
   min-height: 30px !important;
 }
-.text {
-  color: #777777;
-  font-size: 14px;
-  width: 300px;
-}
+
 .sub {
   width: 30%;
+}
+
+@media only screen and (max-width: 600px) {
+  .content2 {
+    background: #e7effc;
+    height: 1225px;
+    width: 100%;
+  }
 }
 </style>

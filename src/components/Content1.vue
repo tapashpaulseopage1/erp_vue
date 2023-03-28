@@ -10,7 +10,7 @@
         xl="9"
         class="d-block d-md-flex justify-start"
       >
-        <div v-for="button in buttonList" :key="button.id">
+        <div v-for="button in buttonList" :key="button.id" class="btn">
           <v-btn outlined class="pa-2 mx-2 my-2">
             <v-icon class="text-h5 font-bold black-text">{{
               button.icon
@@ -27,73 +27,67 @@
     </v-row>
 
     <v-divider></v-divider>
-
     <!-- second header -->
     <v-row>
-      <v-col cols="6" sm="6" md="3" lg="3" xl="3">
-        <div
-          v-for="tags in tagList"
-          :key="tags"
-          class="d-flex justify-start px-4"
-        >
-          <span class="py-4 gary-text font">{{ tags }} : </span>
-        </div>
-      </v-col>
-
-      <v-col cols="6" sm="6" md="9" lg="9" xl="9">
-        <div
-          v-for="tagd in tagDetails"
-          :key="tagd.id"
-          class="d-flex justify-start px-2 mb-1"
-        >
-          <!-- with image tag row -->
-          <div v-if="tagd.img" class="mt-2">
-            <div class="d-flex mt-6">
-              <div>
-                <v-avatar size="32">
-                  <img :src="tagd.img" />
-                </v-avatar>
-              </div>
-              <div class="px-2">
-                <div class="font-text mt-n2">
-                  {{ tagd.name }}
-                </div>
-                <div class="font-text2">
-                  {{ tagd.title }}
-                </div>
-              </div>
-              <div v-if="tagd.txt">
-                <v-chip
-                  class="white--text text-caption"
-                  x-small
-                  color="#686868"
-                >
-                  {{ tagd.txt }}
-                </v-chip>
-              </div>
-              <div v-else></div>
-            </div>
-          </div>
-
-          <!-- icon with text -->
-          <div v-else-if="tagd.color" class="pt-2">
-            <div class="d-flex pt-2">
-              <v-icon :color="tagd.color" size="10" class="mt-3 mx-2"
-                >mdi-circle</v-icon
+      <v-col cols="12" sm="12" md="12" lg="12" xl="12">
+        <v-card class="pa-1 card">
+          <v-card-text class="pa-0 card">
+            <v-list>
+              <v-list-item
+                v-for="tagd in tagDetails"
+                :key="tagd.id"
+                class="d-flex w-full"
               >
+                <div class="font1 font tag">{{ tagd.name }} :</div>
+                <!-- <div > -->
+                <v-list-item v-if="tagd.color">
+                  <div class="d-flex">
+                    <v-icon :color="tagd.color" size="10" class="mt-3 mx-2"
+                      >mdi-circle</v-icon
+                    >
 
-              <span class="font-text pt-3">{{ tagd.text }}</span>
-            </div>
-          </div>
+                    <span class="font-text pt-3">{{ tagd.text }}</span>
+                  </div>
+                </v-list-item>
 
-          <!-- only text show -->
-          <div v-else class="pt-3">
-            <span class="font-text mt-3">
-              {{ tagd.text }}
-            </span>
-          </div>
-          <!-- <span class="py-3 gary-text font">{{ tags }} : </span> -->
-        </div>
+                <v-list-item v-else-if="tagd.img">
+                  <div class="d-flex">
+                    <div>
+                      <v-avatar size="32">
+                        <img :src="tagd.img" />
+                      </v-avatar>
+                    </div>
+                    <div class="px-2">
+                      <div class="font-text mt-n2">
+                        {{ tagd.name }}
+                      </div>
+                      <div class="font-text2">
+                        {{ tagd.title }}
+                      </div>
+                    </div>
+                    <div v-if="tagd.txt">
+                      <v-chip
+                        class="white--text text-caption"
+                        x-small
+                        color="#686868"
+                      >
+                        {{ tagd.txt }}
+                      </v-chip>
+                    </div>
+                    <div v-else></div>
+                  </div>
+                </v-list-item>
+
+                <v-list-item v-else>
+                  <span class="font-text">
+                    {{ tagd.text }}
+                  </span>
+                </v-list-item>
+                <!-- </div> -->
+              </v-list-item>
+            </v-list>
+          </v-card-text>
+        </v-card>
       </v-col>
     </v-row>
 
@@ -114,7 +108,7 @@
         </v-card-title>
 
         <v-card-text class="overflow-y-auto pa-2 font font2 card-text light">
-          <!-- <div class="w-full"> -->
+          <!-- first box -->
           <div class="card-border">
             <div class="d-block d-md-flex pa-1 box">
               <div
@@ -138,7 +132,7 @@
               {{ detail.text2 }}
             </div>
           </div>
-
+          <!-- second box -->
           <div class="card-border">
             <div class="d-block d-md-flex pa-1 box">
               <div
@@ -218,22 +212,26 @@ export default {
       tagDetails: [
         {
           id: 1,
+          name: "Parent Task",
           text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         },
         {
           id: 2,
+          name: "Project",
           text: "Lorem Ipsum is simply dummy text of the.",
           icon: "mdi-circle-small",
           color: "primary",
         },
         {
           id: 3,
+          name: "Milestone",
           text: "Lorem Ipsum is simply dummy text of the.",
           icon: "mdi-circle-small",
           color: "red",
         },
         {
           id: 4,
+          name: " Assigned To",
           name: "MD.Sadik Istiak",
           title: "UI/UX Designer",
           img: require("../assets/image/img1.png"),
@@ -241,18 +239,21 @@ export default {
         },
         {
           id: 5,
+          name: "Assigned By",
           name: "MD.Sadik Istiak",
           title: "UI/UX Designer",
           img: require("../assets/image/img1.png"),
         },
         {
           id: 6,
+          name: "Priority",
           text: "Medium",
           icon: "mdi-circle-small",
           color: "orange ",
         },
         {
           id: 7,
+          name: "Task Category ",
           text: "Frontend Design",
         },
       ],
@@ -301,9 +302,20 @@ export default {
   width: 100%;
   /* height: 1494px; */
 }
+.btn {
+  display: flex;
+  justify-content: start;
+}
+
+.card {
+  border: none;
+}
 
 .card-title {
   height: 53px !important;
+}
+.tag {
+  width: 25%;
 }
 
 .gary-text {
@@ -313,10 +325,11 @@ export default {
 }
 
 .font-text {
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: 600;
   padding-top: 5px;
   font-family: "Poppins", sans-serif;
+  color: #283151;
 }
 
 .font-text2 {
@@ -327,11 +340,13 @@ export default {
 .font1 {
   font-size: 16px;
   font-weight: 400;
+  color: #777777;
 }
 
 .font2 {
   font-size: 14px;
 }
+
 /* .box {
   display: grid;
   grid-template-columns: 150px 2fr;
@@ -340,6 +355,7 @@ export default {
 .box2 {
   width: 85%;
 }
+
 .box3 {
   width: 15%;
   height: auto;
@@ -379,9 +395,14 @@ export default {
   .box2 {
     width: 100%;
   }
+
   .box3 {
     width: 100%;
     height: auto;
+  }
+  .btn {
+    display: flex;
+    justify-content: center;
   }
 }
 </style>
