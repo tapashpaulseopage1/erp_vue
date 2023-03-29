@@ -19,7 +19,7 @@
       </v-card-subtitle>
 
       <div>
-        <v-dialog v-model="showSingleComment1" width="750px">
+        <v-dialog v-model="addComment" width="750px">
           <v-card class="pa-1">
             <v-card-text>
               <v-list class="d-flex">
@@ -31,11 +31,11 @@
 
                 <v-list-item class="d-block">
                   <v-list-item-content>
-                    <v-card-title
+                    <!-- <v-card-title
                       class="pa-2 rounded-sm text-body-2 font title text-justify"
                     >
                       <textarea v-model="text" class="text-in"></textarea>
-                    </v-card-title>
+                    </v-card-title> -->
 
                     <v-list-item-title class="d-flex justify-space-between">
                       <input
