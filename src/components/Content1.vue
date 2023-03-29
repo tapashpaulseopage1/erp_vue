@@ -1,7 +1,7 @@
 <template>
   <div class="content1">
     <!-- header -->
-    <v-row class="d-flex justify-start py-5 rounded-lg">
+    <v-row class="d-flex justify-start py-1 rounded-lg">
       <v-col
         cols="12"
         sm="12"
@@ -30,64 +30,65 @@
     <!-- second header -->
     <v-row>
       <v-col cols="12" sm="12" md="12" lg="12" xl="12">
-        <v-card class=" card">
-          <v-card-text class="pa-0 card">
-            <v-list>
-              <v-list-item
-                v-for="tagd in tagDetails"
-                :key="tagd.id"
-                class="d-flex w-full"
-              >
-                <div class="font1 font tag">{{ tagd.name }} :</div>
-                <!-- <div > -->
-                <v-list-item v-if="tagd.color">
-                  <div class="d-flex">
-                    <v-icon :color="tagd.color" size="10" class="mt-3 mx-2"
-                      >mdi-circle</v-icon
-                    >
+        <v-list>
+          <v-list-item
+            v-for="tagd in tagDetails"
+            :key="tagd.id"
+            class="d-flex w-full"
+          >
+            <div class="font1 font tag">{{ tagd.name }} :</div>
+            <!-- <div > -->
+            <v-list-item v-if="tagd.color">
+              <div class="d-flex">
+                <v-icon :color="tagd.color" size="10" class="mt-3 mx-2"
+                  >mdi-circle</v-icon
+                >
 
-                    <span class="font-text pt-3">{{ tagd.text }}</span>
+                <span class="font-text pt-3">{{ tagd.text }}</span>
+              </div>
+            </v-list-item>
+
+            <v-list-item v-else-if="tagd.img">
+              <div class="d-flex">
+                <div>
+                  <v-avatar size="32">
+                    <img :src="tagd.img" />
+                  </v-avatar>
+                </div>
+                <div class="px-2">
+                  <div class="font-text mt-n2">
+                    {{ tagd.name1 }}
                   </div>
-                </v-list-item>
-
-                <v-list-item v-else-if="tagd.img">
-                  <div class="d-flex">
-                    <div>
-                      <v-avatar size="32">
-                        <img :src="tagd.img" />
-                      </v-avatar>
-                    </div>
-                    <div class="px-2">
-                      <div class="font-text mt-n2">
-                        {{ tagd.name1 }}
-                      </div>
-                      <div class="font-text2">
-                        {{ tagd.title }}
-                      </div>
-                    </div>
-                    <div v-if="tagd.txt">
-                      <v-chip
-                        class="white--text text-caption"
-                        x-small
-                        color="#686868"
-                      >
-                        {{ tagd.txt }}
-                      </v-chip>
-                    </div>
-                    <div v-else></div>
+                  <div class="font-text2">
+                    {{ tagd.title }}
                   </div>
-                </v-list-item>
+                </div>
+                <div v-if="tagd.txt">
+                  <v-chip
+                    class="white--text text-caption"
+                    x-small
+                    color="#686868"
+                  >
+                    {{ tagd.txt }}
+                  </v-chip>
+                </div>
+                <div v-else></div>
+              </div>
+            </v-list-item>
 
-                <v-list-item v-else>
-                  <span class="font-text">
-                    {{ tagd.text }}
-                  </span>
-                </v-list-item>
-                <!-- </div> -->
-              </v-list-item>
-            </v-list>
-          </v-card-text>
-        </v-card>
+            <v-list-item v-else>
+              <span class="font-text">
+                {{ tagd.text }}
+              </span>
+            </v-list-item>
+            <!-- </div> -->
+          </v-list-item>
+        </v-list>
+        <!-- <v-card class="card">
+          <v-card-text class="pa-0 card"> -->
+
+        <!-- </v-card-text>
+        </v-card> -->
       </v-col>
     </v-row>
 
@@ -130,9 +131,28 @@
 
             <div class="pa-2">
               {{ detail.text2 }}
-              <a href="#" text class="blue--text pa-0 text-decoration-none">
+              <a
+                href="#"
+                @click="dialog1 = true"
+                text
+                class="blue--text pa-0 text-decoration-none"
+              >
                 Read full guideline
               </a>
+              <!-- dialog box for show text -->
+              <v-dialog v-model="dialog1" width="800px" class="">
+                <v-card class="p-2">
+                  <v-card-text class="pa-4 font font2 text-justify">
+                    {{ detail.text1 }} {{ detail.text2 }}
+                  </v-card-text>
+                  <v-card-actions class="d-flex justify-end py-1">
+                    <v-btn color="primary" text @click="dialog1 = false"
+                      >Close</v-btn
+                    >
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+              <!--end dialog box  -->
             </div>
           </div>
           <!-- second box -->
@@ -157,9 +177,28 @@
 
             <div class="pa-2">
               {{ detail.text2 }}
-              <a href="#" text class="blue--text pa-0 text-decoration-none">
+              <a
+                href="#"
+                @click="dialog2 = true"
+                text
+                class="blue--text pa-0 text-decoration-none"
+              >
                 Read full guideline
               </a>
+              <!-- dialog box for show text -->
+              <v-dialog v-model="dialog2" width="800px" class="">
+                <v-card class="p-2">
+                  <v-card-text class="pa-4 font font2 text-justify">
+                    {{ detail.text1 }} {{ detail.text2 }}
+                  </v-card-text>
+                  <v-card-actions class="d-flex justify-end py-1">
+                    <v-btn color="primary" text @click="dialog2 = false"
+                      >Close</v-btn
+                    >
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+              <!--end dialog box  -->
             </div>
           </div>
 
@@ -175,10 +214,29 @@
           {{ detail.title }}
         </v-card-title>
         <v-card-text class="overflow-scroll pa-2 font font2 card-text">
-          {{ detail.text }}
-          <a href="#" text class="blue--text pa-0 text-decoration-none">
+          {{ detail.text | truncate(500) }}
+          <a
+            href="#"
+            @click="dialog = true"
+            text
+            class="blue--text pa-0 text-decoration-none"
+          >
             Read full guideline
           </a>
+          <!-- dialog box for show text -->
+          <v-dialog v-model="dialog" width="800px" class="">
+            <v-card class="p-2">
+              <v-card-text class="pa-4 font font2 text-justify">
+                {{ detail.text }}
+              </v-card-text>
+              <v-card-actions class="d-flex justify-end py-1">
+                <v-btn color="primary" text @click="dialog = false"
+                  >Close</v-btn
+                >
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+          <!--end dialog box  -->
         </v-card-text>
       </v-card>
     </div>
@@ -190,6 +248,9 @@ export default {
   name: "content1",
   data() {
     return {
+      dialog: false,
+      dialog1: false,
+      dialog2: false,
       buttonList: [
         {
           id: 1,
@@ -361,11 +422,6 @@ export default {
 .font2 {
   font-size: 14px;
 }
-
-/* .box {
-  display: grid;
-  grid-template-columns: 150px 2fr;
-} */
 
 .box2 {
   width: 85%;

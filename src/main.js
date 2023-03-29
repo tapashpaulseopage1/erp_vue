@@ -7,6 +7,14 @@ import "./assets/css/index.css";
 
 Vue.config.productionTip = false;
 
+Vue.filter("truncate", function (text, length) {
+  if (text.length > length) {
+    return text.substring(0, length);
+  } else {
+    return text;
+  }
+});
+
 new Vue({
   router,
   store,

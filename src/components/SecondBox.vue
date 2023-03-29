@@ -17,7 +17,7 @@
       <v-card-text class="rounded-lg pb-0">
         <v-list class="" v-if="content.lists">
           <v-list-item
-            class="pa-0"
+            class="pa-0 list-item"
             v-for="list in content.lists"
             :key="list.id"
           >
@@ -29,13 +29,16 @@
               <v-icon class="text-body-1 px-2">{{ list.icon2 }}</v-icon>
             </v-list-item-subtitle>
           </v-list-item>
-          <v-divider></v-divider>
         </v-list>
       </v-card-text>
       <v-card-title class="tagg">
-        <v-avatar size="24" color="blue">
-          <v-icon color="white"> mdi-chevron-left </v-icon>
-        </v-avatar>
+        <v-btn icon>
+          <v-avatar size="24" color="blue">
+            <v-icon color="white" class="text-body-1 font-weight-regular">
+              mdi-chevron-left
+            </v-icon>
+          </v-avatar>
+        </v-btn>
       </v-card-title>
     </v-card>
   </div>
@@ -114,11 +117,14 @@ export default {
   min-height: 30px !important;
   /* border-bottom: 1px solid rgba(128, 128, 128, 0.272); */
 }
+.list-item {
+  border-top: 1px solid rgba(128, 128, 128, 0.251);
+}
 
 .tagg {
   position: absolute;
-  top: 50px;
-  left: -25px;
+  top: 30%;
+  left: -10%;
   z-index: 99;
 }
 .text {
