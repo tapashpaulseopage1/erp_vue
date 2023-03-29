@@ -48,7 +48,7 @@
           >
             <v-icon size="18" color="blue"> mdi-paperclip </v-icon>
           </v-btn>
-          <span v-if="showCount" class="pt-3 font-weight-bold text-sm">5</span>
+          <span class="pt-3 font-weight-bold text-sm">5</span>
         </v-list-item-title>
         <v-list-item-subtitle v-if="showInput">
           <input
