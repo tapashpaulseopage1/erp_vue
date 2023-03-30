@@ -1,5 +1,5 @@
 <template>
-  <v-container class="ml-16">
+  <v-container class="">
     <v-file-input
       accept="image/*"
       label="Attach file here"
@@ -18,8 +18,10 @@
             <v-img :src="image.image" width="40px" height="40px" />
             <span class="text-caption">{{ image.name }}</span>
           </div>
-          <v-avatar size="18" color="red" class="mt-n1">
-            <v-icon size="16"> mdi-close </v-icon>
+          <v-avatar size="18" color="red" class="mt-n2">
+            <v-icon size="16" color="white" class="font-normal text-caption">
+              mdi-close
+            </v-icon>
           </v-avatar>
         </div>
       </v-col>
@@ -96,7 +98,7 @@ export default {
 .box21 {
   width: 60px;
   height: 70px;
-  background: rgba(128, 128, 128, 0.276);
+  background: #f8f8f8;
   padding: 5px;
   margin: 5px;
   display: flex;

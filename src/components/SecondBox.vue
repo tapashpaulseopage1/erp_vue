@@ -28,19 +28,18 @@
                 </v-avatar>
                 <v-list-item class="dialog-box">
                   <TextEditor />
+                  <UploadImage />
                   <!-- <EditorTwo /> -->
                 </v-list-item>
               </v-list>
-            </v-card-text>
-            <v-card-text>
-              <UploadImage />
+              <!-- <UploadImage /> -->
             </v-card-text>
           </v-card>
         </v-dialog>
       </div>
 
-      <v-card-text class="rounded-lg pb-0">
-        <v-list class="" v-if="content.lists">
+      <v-card-text class="rounded-lg pb-0 pt-0">
+        <v-list class="pa-0" v-if="content.lists">
           <v-list-item
             class="pa-0 list-item"
             v-for="list in content.lists"
@@ -208,7 +207,7 @@
                     </v-card-title>
 
                     <v-list-item-title class="d-flex justify-space-between">
-                      <UploadImage2 />
+                      <UploadImage />
 
                       <span class="mt-10">Last update </span>
                     </v-list-item-title>
@@ -227,7 +226,7 @@
 import CommentList from "./CommentList.vue";
 import TextEditor from "./TextEditor.vue";
 import UploadImage from "./UploadImage.vue";
-import UploadImage2 from "./UploadImage2.vue";
+// import UploadImage2 from "./UploadImage2.vue";
 // import EditorTwo from "./EditorTwo.vue";
 
 export default {
@@ -312,7 +311,7 @@ export default {
     CommentList,
     TextEditor,
     UploadImage,
-    UploadImage2,
+    // UploadImage2,
     // EditorTwo,
   },
 
