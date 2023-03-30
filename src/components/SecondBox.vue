@@ -9,18 +9,16 @@
       <v-card-title class="text-body-1 font-weight-bold">
         {{ content.name }}
       </v-card-title>
-      <v-card-subtitle class="pa-1">
-        <v-btn @click="addComment = !addComment"
-          ><v-icon color="#1D82F5" class="text-display-1"
-            >mdi-plus</v-icon
-          ></v-btn
-        >
-        <span class="text blue--text">Add Comment</span>
+      <v-card-subtitle class="pa-1 d-flex justify-start">
+        <v-btn icon @click="addComment = !addComment" class="ml-14">
+          <v-icon color="#1D82F5" class="text-display-1">mdi-plus</v-icon>
+          <span class="text blue--text">Add Comment</span>
+        </v-btn>
       </v-card-subtitle>
 
       <div>
         <v-dialog v-model="addComment" width="750px">
-          <v-card class="pa-1">
+          <v-card class="pa-1" height="100%">
             <v-card-text>
               <v-list class="d-flex">
                 <v-avatar size="62" class="pt-5" color="black">
@@ -28,56 +26,13 @@
                     src="https://freepngimg.com/thumb/man/22654-6-man-thumb.png"
                   />
                 </v-avatar>
-
-                <v-list-item class="d-block">
-                  <v-list-item-content>
-                    <!-- <v-card-title
-                      class="pa-2 rounded-sm text-body-2 font title text-justify"
-                    >
-                      <textarea v-model="text" class="text-in"></textarea>
-                    </v-card-title> -->
-
-                    <v-list-item-title class="d-flex justify-space-between">
-                      <input
-                        class="fields"
-                        style="border: none; background: #fff"
-                        dense
-                        multiple
-                        type="file"
-                        @change="onFileChange"
-                        label="Remove Files here (if need)"
-                      />
-
-                      <span class="mt-2">Last update </span>
-                    </v-list-item-title>
-                  </v-list-item-content>
-                  <v-list-item-content>
-                    <div class="file d-flex" v-if="images">
-                      <div
-                        v-for="image in images"
-                        :key="image"
-                        class="pa-1 d-flex"
-                      >
-                        <v-img
-                          :src="image"
-                          style="height: 30px; width: 45px; padding: 5px"
-                        />
-                        <v-avatar size="20" color="red" class="mt-n2 ml-n1">
-                          <v-icon size="16"> mdi-close </v-icon>
-                        </v-avatar>
-                      </div>
-                    </div>
-                    <div>
-                      <v-btn
-                        color="primary"
-                        class="text-body-2 font-weight-normal"
-                      >
-                        Update comment
-                      </v-btn>
-                    </div>
-                  </v-list-item-content>
+                <v-list-item class="dialog-box">
+                  <TextEditor />
                 </v-list-item>
               </v-list>
+            </v-card-text>
+            <v-card-text>
+              <UploadImage />
             </v-card-text>
           </v-card>
         </v-dialog>
@@ -104,6 +59,8 @@
           </v-list-item>
         </v-list>
       </v-card-text>
+
+      <!-- sidebar icon -->
       <v-card-title class="tagg">
         <div>
           <v-btn icon @click="openDialog">
@@ -138,18 +95,6 @@
                         RS
                       </span>
                     </v-avatar>
-                    <!-- <v-file-input
-                      outlined
-                      dense
-                      accept="image/*"
-                      :label="fileInputLabel"
-                      :rules="[(v) => !!v || 'ID / Passport is required']"
-                      @change="onNewFileUpload"
-                    >
-                      <template #prepend-inner>
-                        {{ executive.id_doc.fileName }}
-                      </template>
-                    </v-file-input> -->
                     <v-text-field
                       type="text"
                       class="text-body-1 font-weight-medium pa-2"
@@ -175,6 +120,7 @@
           </v-dialog>
         </div>
       </v-card-title>
+      <!-- sidebar icon end -->
 
       <!-- first dialog -->
       <div>
@@ -261,43 +207,10 @@
                     </v-card-title>
 
                     <v-list-item-title class="d-flex justify-space-between">
-                      <input
-                        class="fields"
-                        style="border: none; background: #fff"
-                        dense
-                        multiple
-                        type="file"
-                        @change="onFileChange"
-                        label="Remove Files here (if need)"
-                      />
+                      <UploadImage />
 
-                      <span class="mt-2">Last update </span>
+                      <span class="mt-10">Last update </span>
                     </v-list-item-title>
-                  </v-list-item-content>
-                  <v-list-item-content>
-                    <div class="file d-flex" v-if="images">
-                      <div
-                        v-for="image in images"
-                        :key="image"
-                        class="pa-1 d-flex"
-                      >
-                        <v-img
-                          :src="image"
-                          style="height: 30px; width: 45px; padding: 5px"
-                        />
-                        <v-avatar size="20" color="red" class="mt-n2 ml-n1">
-                          <v-icon size="16"> mdi-close </v-icon>
-                        </v-avatar>
-                      </div>
-                    </div>
-                    <div>
-                      <v-btn
-                        color="primary"
-                        class="text-body-2 font-weight-normal"
-                      >
-                        Update comment
-                      </v-btn>
-                    </div>
                   </v-list-item-content>
                 </v-list-item>
               </v-list>
@@ -311,15 +224,21 @@
 
 <script>
 import CommentList from "./CommentList.vue";
+import TextEditor from "./TextEditor.vue";
+import UploadImage from "./UploadImage.vue";
 
 export default {
   data() {
     return {
+      currFiles: [],
+      readers: [],
+      files: [],
       showSingleComment: false,
       showSingleComment1: false,
       addComment: false,
       images: [],
-      text: " Lorem ipsum dolor sit amet consectetur adipisicing elit.Sit molestias dolore repudiandae accusantium? Beatae illo ducimus qui, labore dolorum aliquam vitae corporis in dignissimos laborum tenetur natus eligendi possimus nemo alias expedita dolorem magni enim obcaecati consequuntur voluptate. Similique error nesciunt minima dolorum repellat dicta eaque ullam mollitia modi, rem nam harum. Minus eos rem asperiores vero! Incidunt explicabo recusandae obcaecati, id maxime illum provident.",
+      images1: [],
+      text: " Lorem ipsum dolor sit amet consectetur adipisicing elit.Sit molestias dolore repudiandae accusantium? Beatae illo ducimus qui, labore dolorum aliquam vitae corporis in dignissimos laborum tenetur natus eligendi possimus nemo alias expedita dolorem magni enim obcaecati consequuntur voluptate. Similique error nesciunt minima dolorum repellat dicta eaque ullam mollitia modi, rem nam harum.",
 
       isActive: true,
       dialog: false,
@@ -388,6 +307,8 @@ export default {
 
   components: {
     CommentList,
+    TextEditor,
+    UploadImage,
   },
 
   methods: {
@@ -399,40 +320,102 @@ export default {
       console.log("click");
     },
 
-    onFileChange(e) {
-      var files = e.target.files || e.dataTransfer.files;
-      if (!files.length) return;
-      this.createImage(files);
-    },
-    createImage(files) {
-      var vm = this;
-      for (var index = 0; index < files.length; index++) {
-        var reader = new FileReader();
-        reader.onload = function (event) {
-          const imageUrl = event.target.result;
-          vm.images.push(imageUrl);
+    addFiles() {
+      console.log("files", this.files);
+      this.files.forEach((file, f) => {
+        this.readers[f] = new FileReader();
+        this.readers[f].onloadend = (e) => {
+          let fileData = this.readers[f].result;
+          let imgRef = this.$refs.file[f];
+          imgRef.src = fileData;
+          console.log(fileData);
+          // send to server here...
         };
-        reader.readAsDataURL(files[index]);
-      }
+
+        this.readers[f].readAsDataURL(this.files[f]);
+      });
     },
-    removeImage(index) {
-      this.images.splice(index, 1);
+
+    remove(index) {
+      this.files.splice(index, 1);
     },
+    // inputChanged() {
+    //   console.log(this.files);
+    //   this.currFiles.forEach((file, f) => {
+    //     this.files[f] = new FileReader();
+    //     this.files[f].onloadend = (e) => {
+    //       let fileData = this.files[f].result;
+    //       let imgRef = this.$refs.file[f];
+    //       imgRef.src = fileData;
+    //       console.log(fileData);
+    //       // send to server here...
+    //     };
+
+    //     this.files[f].readAsDataURL(this.currFiles[f]);
+    //   });
+    // },
+
+    // onFileChange(e) {
+    //   var files = e.target.files || e.dataTransfer.files;
+    //   if (!files.length) return;
+    //   this.createImage(files);
+    // },
+
+    // createImage(files) {
+    //   var vm = this;
+    //   for (var index = 0; index < files.length; index++) {
+    //     var reader = new FileReader();
+    //     reader.onload = function (event) {
+    //       const imageUrl = event.target.result;
+    //       vm.images.push(imageUrl);
+    //     };
+    //     reader.readAsDataURL(files[index]);
+    //   }
+    // },
+    // removeImage(index) {
+    //   this.images.splice(index, 1);
+    // },
+
+    // onFileChange1(e) {
+    //   var files = e.target.files || e.dataTransfer.files;
+    //   if (!files.length) return;
+    //   this.createImage1(files);
+    // },
+    // createImage1(files) {
+    //   var vm = this;
+    //   for (var index = 0; index < files.length; index++) {
+    //     var reader = new FileReader();
+    //     reader.onload = function (event) {
+    //       const imageUrl = event.target.result;
+    //       vm.images1.push(imageUrl);
+    //     };
+    //     reader.readAsDataURL(files[index]);
+    //   }
+    // },
+    // removeImage(index) {
+    //   this.images.splice(index, 1);
+    // },
   },
 };
 </script>
 
 <style scoped>
 .text-in {
-  height: 150px;
+  height: 100px;
   width: 100%;
   padding: 5px;
   border-radius: 5px;
 }
+
+/* .text-editor{
+  height: 100px;
+} */
+
 .file {
   height: 60px;
   width: 100%;
 }
+
 .v-dialog {
   border: 10px solid gold !important;
 }
@@ -452,6 +435,7 @@ export default {
 
   /* border-bottom: 1px solid rgba(128, 128, 128, 0.272); */
 }
+
 .title {
   background: #d8d4d447;
   border-radius: 5%;
@@ -499,5 +483,9 @@ input {
 .comment-list {
   display: grid;
   grid-template-columns: 60px 60px 40px 30px;
+}
+
+.dialog-box {
+  display: block !important;
 }
 </style>
