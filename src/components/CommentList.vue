@@ -25,7 +25,9 @@
         <input name="text" type="text" value="call dynamic domain name done" />
 
         <v-list-item-title class="comment-list">
-          <v-icon size="18" color="gray"> mdi-emoticon-happy-outline </v-icon>
+          <v-btn icon @click="openEmoji = !openEmoji">
+            <v-icon size="18" color="gray"> mdi-emoticon-happy-outline </v-icon>
+          </v-btn>
 
           <v-btn
             @click="showInput = true"
@@ -57,15 +59,58 @@
             value="call dynamic domain name done"
           />
         </v-list-item-subtitle>
+        <div v-if="openEmoji" style="position: absolute; height: 200px">
+          <picker title="Pick your emoji…" emoji="point_up" />
+        </div>
       </v-list-item-content>
     </v-list-item>
   </div>
 </template>
 
 <script>
+// import data from "emoji-mart-vue/data/messenger.json";
+// import { NimblePicker } from "emoji-mart-vue";
+
+import { Picker } from "emoji-mart-vue";
+
 export default {
   data() {
     return {
+      data: [
+        {
+          id: "smiley",
+          name: "Smiling Face with Open Mouth",
+          colons: ":smiley:",
+          text: ":)",
+          emoticons: ["=)", "=-)"],
+          skin: null,
+          native: "😃",
+        },
+
+        {
+          id: "santa",
+          name: "Father Christmas",
+          colons: ":santa::skin-tone-3:",
+          text: "",
+          emoticons: [],
+          skin: 3,
+          native: "🎅🏼",
+        },
+
+        {
+          id: "octocat",
+          name: "Octocat",
+          colons: ":octocat",
+          text: "",
+          emoticons: [],
+          custom: true,
+          imageUrl:
+            "https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7",
+        },
+      ],
+      openEmoji: false,
+      // insert: "",
+      search: "",
       date: new Date().toLocaleString("en-us", {
         month: "short",
         year: "numeric",
@@ -104,9 +149,26 @@ export default {
     };
   },
 
+  components: {
+    Picker,
+  },
+
   computed: {
     newDateAndTime() {
       return this.date + " at " + this.tt;
+    },
+  },
+
+  methods: {
+    append(emoji) {
+      this.input += emoji;
+    },
+  },
+  directives: {
+    focus: {
+      inserted(el) {
+        el.focus();
+      },
     },
   },
 };
@@ -116,6 +178,9 @@ export default {
 .comment-list {
   display: grid;
   grid-template-columns: 30px 60px 60px 40px 30px;
+}
+.v-overlay {
+  display: none !important;
 }
 
 input {
