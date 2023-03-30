@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
+// import VTiptap from "@peepi/vuetify-tiptap";
 import Vue2Editor from "vue2-editor";
 import "./assets/css/index.css";
 

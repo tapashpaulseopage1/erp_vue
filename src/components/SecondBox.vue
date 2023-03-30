@@ -28,6 +28,7 @@
                 </v-avatar>
                 <v-list-item class="dialog-box">
                   <TextEditor />
+                  <!-- <EditorTwo /> -->
                 </v-list-item>
               </v-list>
             </v-card-text>
@@ -207,7 +208,7 @@
                     </v-card-title>
 
                     <v-list-item-title class="d-flex justify-space-between">
-                      <UploadImage />
+                      <UploadImage2 />
 
                       <span class="mt-10">Last update </span>
                     </v-list-item-title>
@@ -226,6 +227,8 @@
 import CommentList from "./CommentList.vue";
 import TextEditor from "./TextEditor.vue";
 import UploadImage from "./UploadImage.vue";
+import UploadImage2 from "./UploadImage2.vue";
+// import EditorTwo from "./EditorTwo.vue";
 
 export default {
   data() {
@@ -309,6 +312,8 @@ export default {
     CommentList,
     TextEditor,
     UploadImage,
+    UploadImage2,
+    // EditorTwo,
   },
 
   methods: {

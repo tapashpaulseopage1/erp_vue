@@ -14,9 +14,8 @@ export default {
 };
 </script>
 
-<style scoped>
-/* .vue_edeitor_height {
-  height: 200px;
-  display: block;
-} */
+<style >
+.ql-editor {
+  min-height: 50px !important;
+}
 </style>

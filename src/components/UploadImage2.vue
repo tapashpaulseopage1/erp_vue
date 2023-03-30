@@ -1,5 +1,5 @@
 <template>
-  <v-container class="ml-16">
+  <v-container class="">
     <v-file-input
       accept="image/*"
       label="Attach file here"
@@ -9,7 +9,7 @@
       color="blue"
       v-model="files"
       @change="addFiles"
-      style="width: 40% !important"
+      style="width: 40% !important; border: none !important"
     ></v-file-input>
     <v-row class="d-block row22">
       <v-col class="d-flex justify-start">
@@ -75,8 +75,7 @@ export default {
 };
 </script>
 
-
-<style scoped >
+<style scoped>
 .row {
   width: 100%;
   height: 80px;
