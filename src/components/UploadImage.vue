@@ -34,7 +34,7 @@
 <script>
 export default {
   data: () => ({
-    files: "",
+    files: [],
     readers: [],
     imageList: [
       {
@@ -53,8 +53,8 @@ export default {
   }),
   methods: {
     addFiles() {
-      const { name } = this.files;
-      console.log("files", name);
+      //   const { name } = this.files;
+      console.log("files", this.files);
       this.imageList.push(this.files);
       console.log(this.imageList);
       //   this.files.forEach((file, f) => {
