@@ -1,5 +1,9 @@
 <template>
-  <vue-editor v-model="content" :editor-toolbar="customToolbar" />
+  <vue-editor
+    v-model="content"
+    :editor-toolbar="customToolbar"
+    @keypress.enter="showNewInput = false"
+  />
 </template>
 
 <script>
@@ -9,6 +13,7 @@ export default {
   components: { VueEditor },
 
   data: () => ({
+    showNewInput: true,
     content: "wite something",
     customToolbar: [
       ["bold", "italic", "underline"],

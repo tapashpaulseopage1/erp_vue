@@ -6,14 +6,14 @@
       </v-btn>
 
       <v-btn
-        @click="showInput = true"
+        @click="showInput = !showInput"
         icon
         class="text-body-1 font-weight-normal text-decoration-underline mx-2 py-0 font"
       >
         Reply
       </v-btn>
       <v-btn
-        @click="showInput = false"
+        @click="removeTextBox"
         icon
         class="text-body-1 font-weight-normal text-decoration-underline mx-2 py-0 font"
       >
@@ -31,7 +31,7 @@
           <input
             name="text"
             type="text"
-            value="call dynamic domain name done"
+            placeholder="Write reply here"
             @click="openText"
             v-if="show"
           />
@@ -60,6 +60,9 @@ export default {
       openEmoji: false,
     };
   },
+  mounted() {
+    this.showNewInput = false;
+  },
 
   components: {
     Emoji,
@@ -70,6 +73,11 @@ export default {
     openText() {
       this.showNewInput = true;
       this.show = false;
+    },
+
+    removeTextBox() {
+      this.showInput = false;
+      this.showNewInput = !this.showNewInput;
     },
   },
 };

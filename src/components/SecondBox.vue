@@ -16,6 +16,7 @@
         </v-btn>
       </v-card-subtitle>
 
+      <!-- add comment -->
       <div>
         <v-dialog v-model="addComment" width="750px">
           <v-card class="pa-1" height="100%">
@@ -95,16 +96,21 @@
                         RS
                       </span>
                     </v-avatar>
-                    <v-text-field
+
+                    <input
                       type="text"
-                      class="text-body-1 font-weight-medium pa-2"
-                      append-icon="mdi-check-circle"
-                      color="primary"
-                      dense
-                      solo
-                      hide-details
+                      class="icon-rtl"
+                      placeholder="Search"
+                      @click="openText"
+                      v-if="show"
+                    />
+
+                    <div
+                      v-if="showNewInput"
+                      style="display: block; width: 100%"
                     >
-                    </v-text-field>
+                      <TextEditor2 />
+                    </div>
                   </v-list-item>
                 </v-list>
 
@@ -226,10 +232,15 @@
 import CommentList from "./CommentList.vue";
 import TextEditor from "./TextEditor.vue";
 import UploadImage from "./UploadImage.vue";
+import TextEditor2 from "./TextEditor2.vue";
 
 export default {
   data() {
     return {
+      show: true,
+      showNewInput: false,
+
+      // openText: false,
       currFiles: [],
       readers: [],
       files: [],
@@ -242,7 +253,6 @@ export default {
 
       isActive: true,
       dialog: false,
-
       content2: [
         {
           id: 1,
@@ -309,11 +319,15 @@ export default {
     CommentList,
     TextEditor,
     UploadImage,
-    // UploadImage2,
-    // EditorTwo,
+    TextEditor2,
   },
 
   methods: {
+    openText() {
+      this.showNewInput = true;
+      this.show = false;
+    },
+
     openDialog() {
       this.dialog = true;
       this.isActive = !this.isActive;
@@ -341,67 +355,30 @@ export default {
     remove(index) {
       this.files.splice(index, 1);
     },
-    // inputChanged() {
-    //   console.log(this.files);
-    //   this.currFiles.forEach((file, f) => {
-    //     this.files[f] = new FileReader();
-    //     this.files[f].onloadend = (e) => {
-    //       let fileData = this.files[f].result;
-    //       let imgRef = this.$refs.file[f];
-    //       imgRef.src = fileData;
-    //       console.log(fileData);
-    //       // send to server here...
-    //     };
-
-    //     this.files[f].readAsDataURL(this.currFiles[f]);
-    //   });
-    // },
-
-    // onFileChange(e) {
-    //   var files = e.target.files || e.dataTransfer.files;
-    //   if (!files.length) return;
-    //   this.createImage(files);
-    // },
-
-    // createImage(files) {
-    //   var vm = this;
-    //   for (var index = 0; index < files.length; index++) {
-    //     var reader = new FileReader();
-    //     reader.onload = function (event) {
-    //       const imageUrl = event.target.result;
-    //       vm.images.push(imageUrl);
-    //     };
-    //     reader.readAsDataURL(files[index]);
-    //   }
-    // },
-    // removeImage(index) {
-    //   this.images.splice(index, 1);
-    // },
-
-    // onFileChange1(e) {
-    //   var files = e.target.files || e.dataTransfer.files;
-    //   if (!files.length) return;
-    //   this.createImage1(files);
-    // },
-    // createImage1(files) {
-    //   var vm = this;
-    //   for (var index = 0; index < files.length; index++) {
-    //     var reader = new FileReader();
-    //     reader.onload = function (event) {
-    //       const imageUrl = event.target.result;
-    //       vm.images1.push(imageUrl);
-    //     };
-    //     reader.readAsDataURL(files[index]);
-    //   }
-    // },
-    // removeImage(index) {
-    //   this.images.splice(index, 1);
-    // },
   },
 };
 </script>
 
 <style scoped>
+input {
+  width: 100%;
+  background: #fff;
+  padding: 10px;
+  box-shadow: 0 0 2px gray;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.icon-rtl {
+  padding-right: 20px;
+  background: url("https://static.thenounproject.com/png/101791-200.png")
+    no-repeat right white;
+  background-size: 20px;
+}
+
 .text-in {
   height: 100px;
   width: 100%;
@@ -409,10 +386,6 @@ export default {
   border-radius: 5px;
   overflow: hidden;
 }
-
-/* .text-editor{
-  height: 100px;
-} */
 
 .file {
   height: 60px;
@@ -435,8 +408,6 @@ export default {
 
 .v-list-item {
   min-height: 30px !important;
-
-  /* border-bottom: 1px solid rgba(128, 128, 128, 0.272); */
 }
 
 .title {
