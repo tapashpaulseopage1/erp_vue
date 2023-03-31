@@ -7,7 +7,9 @@
       >
         {{ detail.title }}</v-expansion-panel-header
       >
-      <v-expansion-panel-content>
+      <v-expansion-panel-content
+        style="height: 171px; overflow-y: scroll; overflow-x: hidden"
+      >
         <div class="card-border" v-for="ct in detail.lists" :key="ct.id">
           <!-- {{ ct }} -->
           <div class="d-block d-md-flex pa-1">
