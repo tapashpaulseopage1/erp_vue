@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import ButtonList from "./ButtonList.vue";
+import ButtonList from "./headercontent/ButtonList.vue";
 import CardExpansion from "./card/CardExpansion.vue";
 import ContentCard from "./ContentCard.vue";
 import HeaderContentList from "./headercontent/HeaderContentList.vue";
