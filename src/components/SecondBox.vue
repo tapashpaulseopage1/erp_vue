@@ -226,8 +226,6 @@
 import CommentList from "./CommentList.vue";
 import TextEditor from "./TextEditor.vue";
 import UploadImage from "./UploadImage.vue";
-// import UploadImage2 from "./UploadImage2.vue";
-// import EditorTwo from "./EditorTwo.vue";
 
 export default {
   data() {

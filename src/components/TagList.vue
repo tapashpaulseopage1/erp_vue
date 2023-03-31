@@ -27,7 +27,18 @@
 
     <div>
       <v-list-item-subtitle v-if="showInput">
-        <input name="text" type="text" value="call dynamic domain name done" />
+        <div>
+          <input
+            name="text"
+            type="text"
+            value="call dynamic domain name done"
+            @click="openText"
+            v-if="show"
+          />
+        </div>
+        <div v-if="showNewInput" style="display: block">
+          <TextEditor2 />
+        </div>
       </v-list-item-subtitle>
     </div>
     <div v-if="openEmoji" class="emoji">
@@ -38,10 +49,13 @@
 
 <script>
 import Emoji from "./Emoji.vue";
+import TextEditor2 from "./TextEditor2.vue";
 
 export default {
   data() {
     return {
+      show: true,
+      showNewInput: false,
       showInput: false,
       openEmoji: false,
     };
@@ -49,6 +63,14 @@ export default {
 
   components: {
     Emoji,
+    TextEditor2,
+  },
+
+  methods: {
+    openText() {
+      this.showNewInput = true;
+      this.show = false;
+    },
   },
 };
 </script>
