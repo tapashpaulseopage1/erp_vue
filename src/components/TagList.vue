@@ -6,7 +6,7 @@
       </v-btn>
 
       <v-btn
-        @click="showInput = !showInput"
+        @click="showInput = true"
         icon
         class="text-body-1 font-weight-normal text-decoration-underline mx-2 py-0 font"
       >
@@ -27,18 +27,8 @@
 
     <div>
       <v-list-item-subtitle v-if="showInput">
-        <div>
-          <input
-            name="text"
-            type="text"
-            placeholder="Write reply here"
-            @click="openText"
-            v-if="show"
-          />
-        </div>
-        <div v-if="showNewInput" style="display: block">
-          <TextEditor3 />
-        </div>
+        <TextEditor3 />
+        <div v-if="showNewInput" style="display: block"></div>
       </v-list-item-subtitle>
     </div>
     <div v-if="openEmoji" class="emoji">

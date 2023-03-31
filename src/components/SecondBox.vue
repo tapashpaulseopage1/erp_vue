@@ -91,7 +91,7 @@
                     class="d-flex justify-start first"
                     color="transparant"
                   >
-                    <v-avatar size="30" color="blue" class="pa-0">
+                    <v-avatar size="30" color="blue" class="pa-0 mx-1">
                       <span class="white--text font-weight-normal font">
                         RS
                       </span>
@@ -168,13 +168,32 @@
                       </v-btn>
                       <span class="pt-3 font-weight-bold text-sm">5</span>
                     </v-list-item-title>
+                    <div class="comment">
+                      <v-avatar size="30">
+                        <v-img
+                          src="https://freepngimg.com/thumb/man/22654-6-man-thumb.png"
+                        />
+                      </v-avatar>
+                      <v-sheet
+                        elevation="0"
+                        height="30"
+                        width="100%"
+                        color="#F8F8F8"
+                        class="text-caption font-weight-normal black--text pa-1 pl-3 rounded-lg font"
+                      >
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Assumenda neque facilis
+                      </v-sheet>
+                    </div>
                   </v-list-item-content>
                 </v-list-item>
               </v-list>
             </v-card-text>
 
             <v-card-actions class="d-flex justify-end py-1">
-              <v-btn color="primary" text>Close</v-btn>
+              <v-btn color="#1D82F5" outlined class="rounded-lg" text
+                >Close</v-btn
+              >
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -350,6 +369,11 @@ export default {
 <style scoped>
 .texte {
   width: 100%;
+}
+
+.comment {
+  display: flex;
+  justify-content: start;
 }
 
 .text-in {

@@ -1,7 +1,11 @@
 <template>
   <div class="texte">
     <div v-if="showNewInput" class="editpop">
-      <vue-editor v-model="content" :editor-toolbar="customToolbar" />
+      <vue-editor
+        v-model="content"
+        placeholder="Write reply here"
+        :editor-toolbar="customToolbar"
+      />
 
       <div class="d-flex justify-start pa-2 red">
         <v-btn
@@ -9,12 +13,16 @@
           color="white"
           class="red--text text-body-2 font-weight-normal pa-2 rounded-lg"
         >
-          Send
+          submit comment
         </v-btn>
       </div>
     </div>
     <div class="w-full" v-else>
-      <input type="text" placeholder="Search" @click="openText" />
+      <input
+        type="text"
+        placeholder="Click to add reply here"
+        @click="openText"
+      />
     </div>
   </div>
 </template>
@@ -28,7 +36,7 @@ export default {
   data: () => ({
     showNewInput: false,
 
-    content: "wite something",
+    content: "",
     customToolbar: [
       ["bold", "italic", "underline"],
       [{ list: "ordered" }, { list: "bullet" }],
