@@ -1,5 +1,7 @@
 <template>
-  <vue-editor v-model="content" class="vue_edeitor_height" />
+  <div>
+    <vue-editor v-model="content" class="vue_edeitor_height" />
+  </div>
 </template>
 
 <script>
@@ -10,11 +12,12 @@ export default {
 
   data: () => ({
     content: "write something",
+    show: true,
   }),
 };
 </script>
 
-<style >
+<style>
 .ql-editor {
   min-height: 200px !important;
 }

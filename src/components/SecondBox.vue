@@ -22,7 +22,7 @@
           <v-card class="pa-1" height="100%">
             <v-card-text>
               <v-list class="d-flex">
-                <v-avatar size="62" class="pt-5" color="black">
+                <v-avatar size="62" class="pt-5 pr-2" color="black">
                   <v-img
                     src="https://freepngimg.com/thumb/man/22654-6-man-thumb.png"
                   />
@@ -96,19 +96,7 @@
                         RS
                       </span>
                     </v-avatar>
-
-                    <input
-                      type="text"
-                      class="icon-rtl"
-                      placeholder="Search"
-                      @click="openText"
-                      v-if="show"
-                    />
-
-                    <div
-                      v-if="showNewInput"
-                      style="display: block; width: 100%"
-                    >
+                    <div class="texte">
                       <TextEditor2 />
                     </div>
                   </v-list-item>
@@ -360,23 +348,8 @@ export default {
 </script>
 
 <style scoped>
-input {
+.texte {
   width: 100%;
-  background: #fff;
-  padding: 10px;
-  box-shadow: 0 0 2px gray;
-  border-radius: 5px;
-  font-size: 14px;
-  font-weight: 500;
-  margin-left: 10px;
-  margin-bottom: 10px;
-}
-
-.icon-rtl {
-  padding-right: 20px;
-  background: url("https://static.thenounproject.com/png/101791-200.png")
-    no-repeat right white;
-  background-size: 20px;
 }
 
 .text-in {
