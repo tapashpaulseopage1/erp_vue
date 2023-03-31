@@ -37,7 +37,7 @@
           />
         </div>
         <div v-if="showNewInput" style="display: block">
-          <TextEditor2 />
+          <TextEditor3 />
         </div>
       </v-list-item-subtitle>
     </div>
@@ -49,7 +49,7 @@
 
 <script>
 import Emoji from "./Emoji.vue";
-import TextEditor2 from "./TextEditor2.vue";
+import TextEditor3 from "./TextEditor3.vue";
 
 export default {
   data() {
@@ -66,7 +66,7 @@ export default {
 
   components: {
     Emoji,
-    TextEditor2,
+    TextEditor3,
   },
 
   methods: {
@@ -77,7 +77,7 @@ export default {
 
     removeTextBox() {
       this.showInput = false;
-      this.showNewInput = !this.showNewInput;
+      // this.showNewInput = !this.showNewInput;
     },
   },
 };
