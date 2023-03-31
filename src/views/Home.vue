@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import HeaderTag from "@/components/HeaderTag.vue";
+import HeaderTag from "@/components/headercontent/HeaderTag.vue";
 import Content1 from "../components/Content1.vue";
 import Content2 from "../components/Content2.vue";
 

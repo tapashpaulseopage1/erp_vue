@@ -39,7 +39,7 @@
 
 <script>
 import Emoji from "./Emoji.vue";
-import TextEditor3 from "./TextEditor3.vue";
+import TextEditor3 from "./texteditor/TextEditor3.vue";
 
 export default {
   data() {

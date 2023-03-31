@@ -88,7 +88,7 @@ export default {
           name: " Assigned To",
           name1: "MD.Sadik Istiak",
           title: "UI/UX Designer",
-          img: require("../assets/image/img1.png"),
+          img: require("@/assets/image/img1.png"),
           txt: "It's You",
         },
         {
@@ -96,7 +96,7 @@ export default {
           name: "Assigned By",
           name1: "MD.Sadik Istiak",
           title: "UI/UX Designer",
-          img: require("../assets/image/img1.png"),
+          img: require("@/assets/image/img1.png"),
         },
         {
           id: 6,

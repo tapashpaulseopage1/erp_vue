@@ -31,9 +31,9 @@
 
 <script>
 import ButtonList from "./ButtonList.vue";
-import CardExpansion from "./CardExpansion.vue";
+import CardExpansion from "./card/CardExpansion.vue";
 import ContentCard from "./ContentCard.vue";
-import HeaderContentList from "./HeaderContentList.vue";
+import HeaderContentList from "./headercontent/HeaderContentList.vue";
 
 export default {
   name: "content1",

@@ -237,9 +237,9 @@
 
 <script>
 import CommentList from "./CommentList.vue";
-import TextEditor from "./TextEditor.vue";
+import TextEditor from "./texteditor/TextEditor.vue";
 import UploadImage from "./UploadImage.vue";
-import TextEditor2 from "./TextEditor2.vue";
+import TextEditor2 from "./texteditor/TextEditor2.vue";
 
 export default {
   data() {
