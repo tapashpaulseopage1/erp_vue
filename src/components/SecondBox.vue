@@ -116,7 +116,7 @@
       </v-card-title>
       <!-- sidebar icon end -->
 
-      <!-- first dialog -->
+      <!-- comment dialog -->
       <div>
         <v-dialog v-model="showSingleComment" width="750px">
           <v-card class="pa-2">
