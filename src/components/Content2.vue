@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import FirstBox from "./FirstBox.vue";
-import SecondBox from "./SecondBox.vue";
-import ThirdBox from "./ThirdBox.vue";
+import FirstBox from "./boxmodel/FirstBox.vue";
+import SecondBox from "./boxmodel/SecondBox.vue";
+import ThirdBox from "./boxmodel/ThirdBox.vue";
 
 export default {
   name: "content2",

@@ -32,7 +32,7 @@
 <script>
 import ButtonList from "./headercontent/ButtonList.vue";
 import CardExpansion from "./card/CardExpansion.vue";
-import ContentCard from "./ContentCard.vue";
+import ContentCard from "./card/ContentCard.vue";
 import HeaderContentList from "./headercontent/HeaderContentList.vue";
 
 export default {

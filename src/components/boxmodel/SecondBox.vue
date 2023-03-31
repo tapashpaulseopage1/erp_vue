@@ -236,10 +236,10 @@
 </template>
 
 <script>
-import CommentList from "./comments/CommentList.vue";
-import TextEditor from "./texteditor/TextEditor.vue";
-import UploadImage from "./fileupload/UploadImage.vue";
-import TextEditor2 from "./texteditor/TextEditor2.vue";
+import CommentList from "../comments/CommentList.vue";
+import TextEditor from "../texteditor/TextEditor.vue";
+import UploadImage from "../fileupload/UploadImage.vue";
+import TextEditor2 from "../texteditor/TextEditor2.vue";
 
 export default {
   data() {

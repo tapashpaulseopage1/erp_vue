@@ -18,7 +18,7 @@
 
 <script>
 import CommentHeader from "./CommentHeader.vue";
-import TagList from "../TagList.vue";
+import TagList from "./TagList.vue";
 import CommentAvator from "./CommentAvator.vue";
 
 export default {
