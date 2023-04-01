@@ -5,9 +5,13 @@
         class="white--text font font1"
         color="red darken-2"
       >
+        <template v-slot:actions>
+          <v-icon color="red"> $expand </v-icon>
+        </template>
         {{ detail.title }}</v-expansion-panel-header
       >
       <v-expansion-panel-content
+        class="light"
         style="height: 171px; overflow-y: scroll; overflow-x: hidden"
       >
         <div class="card-border" v-for="ct in detail.lists" :key="ct.id">
@@ -72,16 +76,15 @@ export default {
 };
 </script>
 
-<style scoped>
-.theme--light.v-expansion-panels
-  .v-expansion-panel-header
-  .v-expansion-panel-header__icon
-  .v-icon {
+<style>
+.v-expansion-panel-header__icon {
   color: #f30505 !important;
   width: 30px !important;
   height: 30px !important;
   border-radius: 50% !important;
   background: white !important;
+  display: flex;
+  justify-content: center;
 }
 
 .font1 {
@@ -89,13 +92,16 @@ export default {
   font-weight: 400;
   color: #777777;
 }
+
 .box3 {
   width: 15%;
   height: auto;
 }
+
 .box2 {
   width: 85%;
 }
+
 .font2 {
   font-size: 14px;
   color: #777777;
