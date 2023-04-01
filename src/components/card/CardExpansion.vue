@@ -12,7 +12,12 @@
       >
       <v-expansion-panel-content
         class="light"
-        style="height: 171px; overflow-y: scroll; overflow-x: hidden"
+        style="
+          height: 171px;
+          padding-bottom: 5px;
+          overflow-y: scroll;
+          overflow-x: hidden;
+        "
       >
         <div class="card-border" v-for="ct in detail.lists" :key="ct.id">
           <!-- {{ ct }} -->
@@ -109,7 +114,7 @@ export default {
 
 .card-border {
   box-shadow: 0 0 5px blue;
-  margin-top: 10px;
+  margin-top: 5px;
   border-radius: 10px;
 }
 
