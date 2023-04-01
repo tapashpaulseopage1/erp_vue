@@ -16,12 +16,6 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "datatable" */ "../views/DataTable.vue"),
   },
-  {
-    path: "/data_table2",
-    name: "datatable2",
-    component: () =>
-      import(/* webpackChunkName: "datatable" */ "../views/DataTable2.vue"),
-  },
 ];
 
 const router = new VueRouter({

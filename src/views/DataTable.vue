@@ -26,15 +26,21 @@
             </v-select>
           </div>
         </v-card-title>
+
         <v-card-text>
           <v-data-table
             :headers="showHeaders"
             :items="desserts"
-            sort-by="calories"
             hide-default-footer
             v-sortable-table="{ onEnd: sortTheHeadersAndUpdateTheKey }"
             :key="anIncreasingNumber"
+            class="content1"
+            mobile-breakpoint="0"
           >
+            <template v-slot:item.actions="{ item }">
+              <v-icon small class="mr-2"> mdi-pencil </v-icon>
+              <v-icon small> mdi-delete </v-icon>
+            </template>
           </v-data-table>
         </v-card-text>
       </v-card>
@@ -91,7 +97,7 @@ export default {
       { text: "Progress", value: "Progress" },
       { text: "Deliverable Status", value: "DeliverableStatus" },
       { text: "Project Status", value: "ProjectStatus" },
-      { text: "Actions", value: "action" },
+      { text: "Actions", value: "actions", sortable: false },
     ],
     desserts: [],
     selectedHeaders: [],
@@ -203,3 +209,15 @@ export default {
   },
 };
 </script>
+
+<style>
+.v-data-table > .v-data-table__wrapper .v-data-table__mobile-table-row {
+  overflow: scroll;
+}
+
+@media screen and (max-width: 400px) {
+  .v-data-table > .v-data-table__wrapper .v-data-table__mobile-table-row {
+    overflow: scroll;
+  }
+}
+</style>
