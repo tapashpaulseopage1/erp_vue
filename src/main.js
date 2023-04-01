@@ -3,10 +3,8 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
-// import VTiptap from "@peepi/vuetify-tiptap";
 import Vue2Editor from "vue2-editor";
 
-// import { EmojiPickerPlugin } from "vue-emoji-picker";
 import "./assets/css/index.css";
 
 Vue.config.productionTip = false;
