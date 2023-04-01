@@ -10,15 +10,7 @@
         </template>
         {{ detail.title }}</v-expansion-panel-header
       >
-      <v-expansion-panel-content
-        class="light"
-        style="
-          height: 171px;
-          padding-bottom: 5px;
-          overflow-y: scroll;
-          overflow-x: hidden;
-        "
-      >
+      <v-expansion-panel-content class="light light2">
         <div class="card-border" v-for="ct in detail.lists" :key="ct.id">
           <!-- {{ ct }} -->
           <div class="d-block d-md-flex pa-1">
@@ -116,6 +108,13 @@ export default {
   box-shadow: 0 0 5px blue;
   margin-top: 5px;
   border-radius: 10px;
+}
+
+.light2 {
+  height: 171px;
+  padding-bottom: 5px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .light::-webkit-scrollbar {
