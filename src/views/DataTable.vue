@@ -37,9 +37,9 @@
             class="content1"
             mobile-breakpoint="0"
           >
-            <!-- <template v-slot:item.Project Budget="{ item }"
-              >{{ value | percent }}
-            </template> -->
+            <template v-slot:item.bid_value="{ item }"
+              >{{ item.bid_value}} - {{item.bid_value2 }}
+            </template>
             <template v-slot:item.actions="{ item }">
               <v-icon small class="mr-2"> mdi-pencil </v-icon>
               <v-icon small> mdi-delete </v-icon>
@@ -112,9 +112,9 @@ export default {
       { text: "Project Link", value: "project_link" },
       {
         text: "Project Budget",
-        value: "value",
+        value: "bid_value",
       },
-      { text: "Bid Value", value: "status_id" },
+      { text: "Bid Value", value: "value" },
       // { text: "Created", value: "created_at" },
       { text: "Created By", value: "added_by" },
       { text: "Bidding Delay Time", value: "bidding_minutes" },
