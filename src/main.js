@@ -16,6 +16,10 @@ Vue.filter("truncate", function (text, length) {
     return text;
   }
 });
+Vue.filter("formatFloat",function(){
+  return parseFloat(float).toFixed(2)
+})
+
 
 new Vue({
   router,

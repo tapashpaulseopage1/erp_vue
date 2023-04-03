@@ -26,17 +26,20 @@
           </div>
         </v-card-title>
 
+        {{ 2.3333 | percent }}
+
         <v-card-text>
-          <!-- {{ desserts }} -->
           <v-data-table
             :headers="showHeaders"
             :items="desserts"
-            :server-items-length="totalDesserts"
             v-sortable-table="{ onEnd: sortTheHeadersAndUpdateTheKey }"
             :key="anIncreasingNumber"
             class="content1"
             mobile-breakpoint="0"
           >
+            <!-- <template v-slot:item.Project Budget="{ item }"
+              >{{ value | percent }}
+            </template> -->
             <template v-slot:item.actions="{ item }">
               <v-icon small class="mr-2"> mdi-pencil </v-icon>
               <v-icon small> mdi-delete </v-icon>
@@ -49,7 +52,7 @@
     <!-- <v-row>
       <table>
         <tbody>
-          <tr v-for="product in desserts.data" :key="product.id">
+          <tr v-for="product in desserts" :key="product.id">
             <th scope="row">{{ product.id }}</th>
             <td>{{ product.project_name }}</td>
             <td>{{ product.project_link }}</td>
@@ -102,16 +105,18 @@ function watchClass(targetNode, classToWatch) {
 
 export default {
   data: () => ({
-    // totalDesserts: 100,
     anIncreasingNumber: 1,
     headers: [
-      { text: "SL. No", value: "currency_id" },
-      { text: "Project Name", value: "project_name" },
+      { text: "SL. No", value: "id" },
+      { text: "Project Name", value: "client_name" },
       { text: "Project Link", value: "project_link" },
-      { text: "Project Budget", value: "source_id" },
+      {
+        text: "Project Budget",
+        value: "value",
+      },
       { text: "Bid Value", value: "status_id" },
       { text: "Created", value: "created_at" },
-      { text: "Created By", value: "client_name" },
+      { text: "Created By", value: "added_by" },
       { text: "Bidding Delay Time", value: "bidding_minutes" },
       { text: "Status", value: "status_id" },
       { text: "Deal Status", value: "deal_status" },
@@ -124,16 +129,20 @@ export default {
   }),
 
   created() {
-    // this.initialize();
     this.tableHeader = this.headers;
     this.selectedHeaders = this.tableHeader;
     this.fatchData();
   },
-  mounted() {},
 
   computed: {
     showHeaders() {
       return this.headers.filter((s) => this.selectedHeaders.includes(s));
+    },
+  },
+
+  filters: {
+    percent: function (dec) {
+      return dec.toFixed(2);
     },
   },
 
@@ -151,65 +160,6 @@ export default {
           console.log(e);
         });
     },
-
-    // initialize() {
-    //   this.desserts = [
-    //     {
-    //       id: 1,
-    //       ProjectName: "Riadus Salehin",
-    //       ClientName: "Riadus Salehin",
-    //       ProjectValue: "44",
-    //       ProjectManager: "Riadus Salehin",
-    //       StartDate: new Date().toLocaleDateString(),
-    //       ExpectedDeadline: new Date().toLocaleDateString(),
-    //       ProjectCompletionDate: new Date().toLocaleDateString(),
-    //       EstimatedHours: "12h",
-    //       TotalLoggedHours: new Date().toTimeString(),
-    //       Tasks: 5,
-    //       Milestones: 10,
-    //       Payment: true,
-    //       Progress: true,
-    //       DeliverableStatus: "pending",
-    //       ProjectStatus: "done",
-    //     },
-    //     {
-    //       id: 2,
-    //       ProjectName: "Riadus Salehin",
-    //       ClientName: "Riadus Salehin",
-    //       ProjectValue: "44",
-    //       ProjectManager: "Riadus Salehin",
-    //       StartDate: new Date().toLocaleDateString(),
-    //       ExpectedDeadline: new Date().toLocaleDateString(),
-    //       ProjectCompletionDate: new Date().toLocaleDateString(),
-    //       EstimatedHours: "12h",
-    //       TotalLoggedHours: new Date().toTimeString(),
-    //       Tasks: 5,
-    //       Milestones: 10,
-    //       Payment: true,
-    //       Progress: true,
-    //       DeliverableStatus: "pending",
-    //       ProjectStatus: "done",
-    //     },
-    //     {
-    //       id: 3,
-    //       ProjectName: "Riadus Salehin",
-    //       ClientName: "Riadus Salehin",
-    //       ProjectValue: "44",
-    //       ProjectManager: "Riadus Salehin",
-    //       StartDate: new Date().toLocaleDateString(),
-    //       ExpectedDeadline: new Date().toLocaleDateString(),
-    //       ProjectCompletionDate: "02/04/2023",
-    //       EstimatedHours: "12h",
-    //       TotalLoggedHours: new Date().toTimeString(),
-    //       Tasks: 5,
-    //       Milestones: 10,
-    //       Payment: true,
-    //       Progress: true,
-    //       DeliverableStatus: "pending",
-    //       ProjectStatus: "done",
-    //     },
-    //   ];
-    // },
 
     sortTheHeadersAndUpdateTheKey(evt) {
       const headersTmp = this.showHeaders;
