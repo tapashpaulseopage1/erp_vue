@@ -40,8 +40,12 @@
             <template v-slot:item.bid_value="{ item }"
               >{{ item.bid_value }} - {{ item.bid_value2 }}
             </template>
+            <!-- <template v-slot:item.value="{ item }"
+              >{{ item.value | percent}} 
+            </template> -->
             <template v-slot:item.bidding_minutes="{ item }"
-              >{{ item.bidding_minutes }} Minute  {{ item.bidding_seconds }} Seconds
+              >{{ item.bidding_minutes }} Minute
+              {{ item.bidding_seconds }} Seconds
             </template>
             <template v-slot:item.actions="{ item }">
               <v-icon small class="mr-2"> mdi-pencil </v-icon>
@@ -143,11 +147,11 @@ export default {
     },
   },
 
-  filters: {
-    percent: function (dec) {
-      return dec.toFixed(2);
-    },
-  },
+  // filters: {
+  //   percent: function () {
+  //     return dec.toFixed(2);
+  //   },
+  // },
 
   methods: {
     fatchData() {
