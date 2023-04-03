@@ -26,7 +26,7 @@
           </div>
         </v-card-title>
 
-        {{ 2.3333 | percent }}
+        <!-- {{ 2.3333 | percent }} -->
 
         <v-card-text>
           <v-data-table
