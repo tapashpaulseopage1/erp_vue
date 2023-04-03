@@ -5,7 +5,6 @@
         <v-card-title class="d-flex">
           Table
           <v-spacer></v-spacer>
-
           <div>
             <v-select
               v-model="selectedHeaders"
@@ -28,10 +27,11 @@
         </v-card-title>
 
         <v-card-text>
+          <!-- {{ desserts }} -->
           <v-data-table
             :headers="showHeaders"
             :items="desserts"
-            hide-default-footer
+            :server-items-length="totalDesserts"
             v-sortable-table="{ onEnd: sortTheHeadersAndUpdateTheKey }"
             :key="anIncreasingNumber"
             class="content1"
@@ -45,11 +45,37 @@
         </v-card-text>
       </v-card>
     </v-row>
+
+    <!-- <v-row>
+      <table>
+        <tbody>
+          <tr v-for="product in desserts.data" :key="product.id">
+            <th scope="row">{{ product.id }}</th>
+            <td>{{ product.project_name }}</td>
+            <td>{{ product.project_link }}</td>
+            <td>{{ product.source_id }}</td>
+            <td>{{ product.status_id }}</td>
+            <td>{{ product.deal_status }}</td>
+            <td>{{ product.client_name }}</td>
+            <td>
+              <button
+                @click="deleteProduct(product.id)"
+                class="btn btn-small btn-warning"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </v-row> -->
   </v-container>
 </template>
 
 <script>
 import { Sortable } from "sortablejs";
+import axios from "axios";
+// import DateTable from "../Api/DataTable";
 
 function watchClass(targetNode, classToWatch) {
   let lastClassState = targetNode.classList.contains(classToWatch);
@@ -76,27 +102,20 @@ function watchClass(targetNode, classToWatch) {
 
 export default {
   data: () => ({
+    // totalDesserts: 100,
     anIncreasingNumber: 1,
     headers: [
-      { text: "SL. No", value: "id" },
-      { text: "Project Name", value: "ProjectName" },
-      { text: "Client Name", value: "ClientName" },
-      { text: "Project Value", value: "ProjectValue" },
-      { text: " Project Manager", value: "ProjectManager" },
-      { text: "Start Date", value: "StartDate" },
-      { text: "Expected Deadline", value: "ExpectedDeadline" },
-      {
-        text: "Actual Project Completion Date",
-        value: "ProjectCompletionDate",
-      },
-      { text: " Estimated Hours", value: "EstimatedHours" },
-      { text: "Total Logged Hours", value: "TotalLoggedHours" },
-      { text: "Tasks", value: "Tasks" },
-      { text: "Milestones", value: "Milestones" },
-      { text: "Payment", value: "Payment" },
-      { text: "Progress", value: "Progress" },
-      { text: "Deliverable Status", value: "DeliverableStatus" },
-      { text: "Project Status", value: "ProjectStatus" },
+      { text: "SL. No", value: "currency_id" },
+      { text: "Project Name", value: "project_name" },
+      { text: "Project Link", value: "project_link" },
+      { text: "Project Budget", value: "source_id" },
+      { text: "Bid Value", value: "status_id" },
+      { text: "Created", value: "created_at" },
+      { text: "Created By", value: "client_name" },
+      { text: "Bidding Delay Time", value: "bidding_minutes" },
+      { text: "Status", value: "status_id" },
+      { text: "Deal Status", value: "deal_status" },
+
       { text: "Actions", value: "actions", sortable: false },
     ],
     desserts: [],
@@ -105,77 +124,92 @@ export default {
   }),
 
   created() {
-    this.initialize();
-    this.tableHeader = Object.values(this.headers);
+    // this.initialize();
+    this.tableHeader = this.headers;
     this.selectedHeaders = this.tableHeader;
+    this.fatchData();
   },
+  mounted() {},
 
   computed: {
-    //Done to get the ordered headers
     showHeaders() {
       return this.headers.filter((s) => this.selectedHeaders.includes(s));
     },
   },
 
   methods: {
-    initialize() {
-      this.desserts = [
-        {
-          id: 1,
-          ProjectName: "Riadus Salehin",
-          ClientName: "Riadus Salehin",
-          ProjectValue: "44",
-          ProjectManager: "Riadus Salehin",
-          StartDate: new Date().toLocaleDateString(),
-          ExpectedDeadline: new Date().toLocaleDateString(),
-          ProjectCompletionDate: new Date().toLocaleDateString(),
-          EstimatedHours: "12h",
-          TotalLoggedHours: new Date().toTimeString(),
-          Tasks: 5,
-          Milestones: 10,
-          Payment: true,
-          Progress: true,
-          DeliverableStatus: "pending",
-          ProjectStatus: "done",
-        },
-        {
-          id: 2,
-          ProjectName: "Riadus Salehin",
-          ClientName: "Riadus Salehin",
-          ProjectValue: "44",
-          ProjectManager: "Riadus Salehin",
-          StartDate: new Date().toLocaleDateString(),
-          ExpectedDeadline: new Date().toLocaleDateString(),
-          ProjectCompletionDate: new Date().toLocaleDateString(),
-          EstimatedHours: "12h",
-          TotalLoggedHours: new Date().toTimeString(),
-          Tasks: 5,
-          Milestones: 10,
-          Payment: true,
-          Progress: true,
-          DeliverableStatus: "pending",
-          ProjectStatus: "done",
-        },
-        {
-          id: 3,
-          ProjectName: "Riadus Salehin",
-          ClientName: "Riadus Salehin",
-          ProjectValue: "44",
-          ProjectManager: "Riadus Salehin",
-          StartDate: new Date().toLocaleDateString(),
-          ExpectedDeadline: new Date().toLocaleDateString(),
-          ProjectCompletionDate: "02/04/2023",
-          EstimatedHours: "12h",
-          TotalLoggedHours: new Date().toTimeString(),
-          Tasks: 5,
-          Milestones: 10,
-          Payment: true,
-          Progress: true,
-          DeliverableStatus: "pending",
-          ProjectStatus: "done",
-        },
-      ];
+    fatchData() {
+      axios
+        .get("https://seopage1erp.website/api/leads")
+        .then((response) => {
+          const tdata = response.data;
+          this.desserts = tdata.data;
+          // console.log(response.data);
+          console.log(this.desserts);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
+
+    // initialize() {
+    //   this.desserts = [
+    //     {
+    //       id: 1,
+    //       ProjectName: "Riadus Salehin",
+    //       ClientName: "Riadus Salehin",
+    //       ProjectValue: "44",
+    //       ProjectManager: "Riadus Salehin",
+    //       StartDate: new Date().toLocaleDateString(),
+    //       ExpectedDeadline: new Date().toLocaleDateString(),
+    //       ProjectCompletionDate: new Date().toLocaleDateString(),
+    //       EstimatedHours: "12h",
+    //       TotalLoggedHours: new Date().toTimeString(),
+    //       Tasks: 5,
+    //       Milestones: 10,
+    //       Payment: true,
+    //       Progress: true,
+    //       DeliverableStatus: "pending",
+    //       ProjectStatus: "done",
+    //     },
+    //     {
+    //       id: 2,
+    //       ProjectName: "Riadus Salehin",
+    //       ClientName: "Riadus Salehin",
+    //       ProjectValue: "44",
+    //       ProjectManager: "Riadus Salehin",
+    //       StartDate: new Date().toLocaleDateString(),
+    //       ExpectedDeadline: new Date().toLocaleDateString(),
+    //       ProjectCompletionDate: new Date().toLocaleDateString(),
+    //       EstimatedHours: "12h",
+    //       TotalLoggedHours: new Date().toTimeString(),
+    //       Tasks: 5,
+    //       Milestones: 10,
+    //       Payment: true,
+    //       Progress: true,
+    //       DeliverableStatus: "pending",
+    //       ProjectStatus: "done",
+    //     },
+    //     {
+    //       id: 3,
+    //       ProjectName: "Riadus Salehin",
+    //       ClientName: "Riadus Salehin",
+    //       ProjectValue: "44",
+    //       ProjectManager: "Riadus Salehin",
+    //       StartDate: new Date().toLocaleDateString(),
+    //       ExpectedDeadline: new Date().toLocaleDateString(),
+    //       ProjectCompletionDate: "02/04/2023",
+    //       EstimatedHours: "12h",
+    //       TotalLoggedHours: new Date().toTimeString(),
+    //       Tasks: 5,
+    //       Milestones: 10,
+    //       Payment: true,
+    //       Progress: true,
+    //       DeliverableStatus: "pending",
+    //       ProjectStatus: "done",
+    //     },
+    //   ];
+    // },
 
     sortTheHeadersAndUpdateTheKey(evt) {
       const headersTmp = this.showHeaders;
@@ -211,7 +245,7 @@ export default {
 </script>
 
 <style>
-.v-data-table > .v-data-table__wrapper .v-data-table__mobile-table-row {
+/* .v-data-table > .v-data-table__wrapper .v-data-table__mobile-table-row {
   overflow: scroll;
 }
 
@@ -219,5 +253,5 @@ export default {
   .v-data-table > .v-data-table__wrapper .v-data-table__mobile-table-row {
     overflow: scroll;
   }
-}
+} */
 </style>
