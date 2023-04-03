@@ -178,7 +178,7 @@ export default {
     },
 
     sortTheHeadersAndUpdateTheKey(evt) {
-      const headersTmp = this.headers;
+      const headersTmp = this.showHeaders;
       const oldIndex = evt.oldIndex;
       const newIndex = evt.newIndex;
       if (newIndex >= headersTmp.length) {
