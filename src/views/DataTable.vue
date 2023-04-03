@@ -38,7 +38,10 @@
             mobile-breakpoint="0"
           >
             <template v-slot:item.bid_value="{ item }"
-              >{{ item.bid_value}} - {{item.bid_value2 }}
+              >{{ item.bid_value }} - {{ item.bid_value2 }}
+            </template>
+            <template v-slot:item.bidding_minutes="{ item }"
+              >{{ item.bidding_minutes }} Minute  {{ item.bidding_seconds }} Seconds
             </template>
             <template v-slot:item.actions="{ item }">
               <v-icon small class="mr-2"> mdi-pencil </v-icon>
