@@ -115,7 +115,7 @@ export default {
         value: "value",
       },
       { text: "Bid Value", value: "status_id" },
-      { text: "Created", value: "created_at" },
+      // { text: "Created", value: "created_at" },
       { text: "Created By", value: "added_by" },
       { text: "Bidding Delay Time", value: "bidding_minutes" },
       { text: "Status", value: "status_id" },
